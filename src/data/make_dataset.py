@@ -117,7 +117,7 @@ data_merged.columns = [
     "acc_x",
     "acc_y",
     "acc_z",
-    "gye_x",
+    "gyr_x",
     "gyr_y",
     "gyr_z",
     "participant",
@@ -136,7 +136,7 @@ sampling = {
     "acc_x": "mean",
     "acc_y": "mean",
     "acc_z": "mean",
-    "gye_x": "mean",
+    "gyr_x": "mean",
     "gyr_y": "mean",
     "gyr_z": "mean",
     "participant": "last",
@@ -144,7 +144,7 @@ sampling = {
     "category": "last",
     "set": "last" 
     }
-numeric_cols = ["acc_x", "acc_y", "acc_z", "gye_x", "gyr_y", "gyr_z"]
+numeric_cols = ["acc_x", "acc_y", "acc_z", "gyr_x", "gyr_y", "gyr_z"]
 non_numeric_cols = ["participant", "label", "category", "set"]
 
 numeric_sampling = {col: "mean" for col in numeric_cols}
@@ -154,9 +154,9 @@ resampled_numeric = data_merged[numeric_cols].resample(rule="200ms").agg(numeric
 resampled_non_numeric = data_merged[non_numeric_cols].resample(rule="200ms").agg(non_numeric_sampling)
 
 data_merged = pd.concat([resampled_numeric, resampled_non_numeric], axis=1)
-nan_rows = data_merged[data_merged['acc_x'].isna() & data_merged['gye_x'].isna()]
+nan_rows = data_merged[data_merged['acc_x'].isna() & data_merged['gyr_x'].isna()]
 
-data_merged = data_merged.dropna(subset=['acc_x', 'gye_x'])
+data_merged = data_merged.dropna(subset=['acc_x', 'gyr_x'])
 
 data_merged.info()
 
