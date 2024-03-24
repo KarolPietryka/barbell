@@ -132,6 +132,10 @@ fig, ax = plt.subplots(nrows = 2, sharex =True, figsize=(20,10))
 combined_plot[["acc_x", "acc_y", "acc_z"]].plot(ax=ax[0])
 combined_plot[["gyr_x", "gyr_y", "gyr_z"]].plot(ax=ax[1])
 
+ax[0].legend(loc = "upper center", bbox_to_anchor=(0.5, 1.15), shadow=True, ncol=3, fancybox=True)
+ax[1].legend(loc = "upper center", bbox_to_anchor=(0.5, 1.15), shadow=True, ncol=3, fancybox=True)
+ax[1].set_xlabel("samples")
+
 
 
 
